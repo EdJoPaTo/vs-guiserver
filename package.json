@@ -1,0 +1,6 @@
+{
+  "name": "vs-guiserver",
+  "dependencies": {
+    "ws": "^1.1.0"
+  }
+}
