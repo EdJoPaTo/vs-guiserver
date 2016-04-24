@@ -4,8 +4,9 @@ var wss = new WebwsServer( {
 } );
 wss.on( 'connection', connection );
 
-wss.broadcast = function broadcast( data ) {
+wss.broadcast = function broadcast( data, exclude ) {
   wss.clients.forEach( function each( client ) {
+    if (client === exclude) return;
     client.send( data );
   } );
 };
@@ -20,6 +21,6 @@ function connection( ws ) {
 
   ws.on( 'message', function( data ) {
     console.log( 'message', data );
-    wss.broadcast( data );
+    wss.broadcast( data, ws );
   } );
 }
